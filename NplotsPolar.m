@@ -13,21 +13,16 @@ function [ax]=Nplots(nrows,ncols)
 %           ylabel(ax.ax2,'NewY')
 %           title(ax.ax2,'NewTitle')
 
-g=groot; 
-if isempty(g.Children)==1
-    figure('units', 'Normalized','Position',[0.1 0.1 0.75 0.75]) 
-else
-   %Use currently open figure? 
-end
+figure('units', 'Normalized','Position',[0.1 0.1 0.75 0.75]) 
 % ax={};
-if ncols>=5; ncoloffset=0.025; else; ncoloffset=0; end
 ax=struct();
 for r=1:nrows
     for c=1:ncols
-        eval(['ax' num2str(((r-1)*ncols)+c) '=subplot(nrows,ncols,((r-1)*ncols)+c);']);
-        eval(['set(ax' num2str(((r-1)*ncols)+c) ',"units","Normalized","OuterPosition",[0+((1/ncols)*(c-1)) (1-(1/nrows))-((1/nrows)*(r-1)) (1/ncols)-ncoloffset 1/nrows])'])
+%         eval(['ax' num2str(((r-1)*ncols)+c) '=subplot(nrows,ncols,((r-1)*ncols)+c);']);
+        eval(['ax' num2str(((r-1)*ncols)+c) '=polaraxes;']);
+        eval(['set(ax' num2str(((r-1)*ncols)+c) ',"units","Normalized","OuterPosition",[0+((1/ncols)*(c-1)) (1-(1/nrows))-((1/nrows)*(r-1)) 1/ncols 1/nrows])'])
         set(gca,'FontWeight','bold')
-        xlabel('X'); ylabel('Y'); title('title')
+%         xlabel('X'); ylabel('Y'); title('title')
         %Indiviual Output (must specify all outputs)
 %         eval(['varargout{((r-1)*ncols)+c}=ax' num2str(((r-1)*ncols)+c) ';'])
 
